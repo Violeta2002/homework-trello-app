@@ -92,3 +92,4 @@ export async function deleteCard(id: string): Promise<void> {
     throw error;
   }
 }
+/* eslint-disable @typescript-eslint/no-explicit-any */

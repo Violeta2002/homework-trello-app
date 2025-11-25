@@ -22,6 +22,7 @@ function convertBoardToData(board: IBoard): BoardData {
 }
 
 function convertLeanBoardToData(board: any): BoardData {
+  
   return {
     _id: board._id.toString(),
     name: board.name,
@@ -89,3 +90,4 @@ export async function deleteBoard(id: string): Promise<void> {
     throw error;
   }
 }
+/* eslint-disable @typescript-eslint/no-explicit-any */

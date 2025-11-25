@@ -2,7 +2,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { type BoardData } from "@/app/actions/boardActions";
-import { type ListData, getLists, createList, updateList, deleteList } from "@/app/actions/listActions";
+import { type ListData, createList, updateList, deleteList } from "@/app/actions/listActions";
 import { type CardData, getCards, createCard, updateCard, deleteCard } from "@/app/actions/cardActions";
 import Link from "next/link";
 
@@ -305,12 +305,6 @@ function CardView({
   const handleTitleCancel = () => {
     setTitle(card.title);
     setIsEditing(false);
-  };
-
-  const handleSaveDescription = async () => {
-    setIsSaving(true);
-    await onUpdate(card._id, { description: description.trim() });
-    setIsSaving(false);
   };
 
   const handleSaveAll = async () => {

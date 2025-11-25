@@ -88,3 +88,4 @@ export async function deleteList(id: string): Promise<void> {
     throw error;
   }
 }
+/* eslint-disable @typescript-eslint/no-explicit-any */

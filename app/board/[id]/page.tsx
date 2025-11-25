@@ -17,6 +17,7 @@ export default async function BoardPage({ params }: PageProps) {
     
     return <BoardView board={board} listsInitial={lists} />;
   } catch (error) {
+    console.log(error);
     notFound();
   }
 }
