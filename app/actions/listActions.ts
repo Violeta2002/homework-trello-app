@@ -25,7 +25,7 @@ function convertListToData(list: IList): ListData {
   };
 }
 
-function convertLeanListToData(list: any): ListData {
+function convertLeanListToData(list: IList): ListData {
   return {
     _id: list._id.toString(),
     name: list.name,
@@ -40,7 +40,7 @@ export async function getLists(boardId: string): Promise<ListData[]> {
   try {
     await connectMongo();
     const lists = await List.find({ boardId }).sort({ order: 1 }).lean();
-    return lists.map(list => convertLeanListToData(list));
+    return lists.map(list => convertLeanListToData(list as unknown as IList));
   } catch (error) {
     console.error("Error fetching lists:", error);
     throw error;
@@ -88,4 +88,3 @@ export async function deleteList(id: string): Promise<void> {
     throw error;
   }
 }
-/* eslint-disable @typescript-eslint/no-explicit-any */

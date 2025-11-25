@@ -21,8 +21,7 @@ function convertBoardToData(board: IBoard): BoardData {
   };
 }
 
-function convertLeanBoardToData(board: any): BoardData {
-  
+function convertLeanBoardToData(board: IBoard): BoardData {
   return {
     _id: board._id.toString(),
     name: board.name,
@@ -35,7 +34,7 @@ export async function getBoards(): Promise<BoardData[]> {
   try {
     await connectMongo();
     const boards = await Board.find({}).sort({ createdAt: -1 }).lean();
-    return boards.map(board => convertLeanBoardToData(board));
+    return boards.map(board => convertLeanBoardToData(board as unknown as IBoard));
   } catch (error) {
     console.error("Error fetching boards:", error);
     throw error;
@@ -90,4 +89,3 @@ export async function deleteBoard(id: string): Promise<void> {
     throw error;
   }
 }
-/* eslint-disable @typescript-eslint/no-explicit-any */

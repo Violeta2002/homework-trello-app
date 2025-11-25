@@ -27,7 +27,7 @@ function convertCardToData(card: ICard): CardData {
   };
 }
 
-function convertLeanCardToData(card: any): CardData {
+function convertLeanCardToData(card: ICard): CardData {
   return {
     _id: card._id.toString(),
     title: card.title,
@@ -43,7 +43,7 @@ export async function getCards(listId: string): Promise<CardData[]> {
   try {
     await connectMongo();
     const cards = await Card.find({ listId }).sort({ order: 1 }).lean();
-    return cards.map(card => convertLeanCardToData(card));
+    return cards.map(card => convertLeanCardToData(card as unknown as ICard));
   } catch (error) {
     console.error("Error fetching cards:", error);
     throw error;
@@ -92,4 +92,3 @@ export async function deleteCard(id: string): Promise<void> {
     throw error;
   }
 }
-/* eslint-disable @typescript-eslint/no-explicit-any */
